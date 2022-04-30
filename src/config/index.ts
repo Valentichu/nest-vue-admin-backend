@@ -1,15 +1,18 @@
-import { readFileSync } from 'fs'
-import yaml from 'js-yaml'
-import { join } from 'path'
+import { merge } from 'lodash';
+import DefaultConfig from './config.default';
+import { IConfig } from './defineConfig';
 
-const configFileNameObj = {
-  development :'dev',
-  test: 'test',
-  production: 'prod'
-}
-
-const env = process.env.NODE_ENV
-
+/**
+ * 根据环境变量判断使用配置
+ */
 export default () => {
-  return yaml.load(readFileSync(join(__dirname, `./${configFileNameObj[env]}.yml`), 'utf8')) as Record<string, any>
-}
+  let envConfig: IConfig = {};
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    envConfig = require(`./config.${process.env.NODE_ENV}`).default;
+  } catch (e) {
+    // 无效配置则自动忽略
+  }
+  // 合并配置
+  return merge(DefaultConfig, envConfig);
+};
