@@ -2,7 +2,7 @@ export default {
   rootRoleId: 1,
   // jwt sign secret
   jwt: {
-    secret: process.env.JWT_SECRET || '123456',
+    secret: '314159',
   },
   // typeorm config
   database: {
@@ -10,8 +10,8 @@ export default {
     host: '127.0.0.1',
     port: 3306,
     username: 'root',
-    password: 'root',
-    database: 'nest-admin',
+    password: 'qazxsw',
+    database: 'nest-vue-admin',
     synchronize: true,
     logging: false,
     timezone: '+08:00', // 东八区

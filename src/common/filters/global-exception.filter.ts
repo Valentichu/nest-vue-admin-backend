@@ -4,10 +4,9 @@ import { ResultData } from '../vo/result'
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
-    catch(exception: HttpException, host: ArgumentsHost) {
+    catch(exception: Error, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
-        const request = ctx.getRequest<Request>();
         const status =
             exception instanceof HttpException
                 ? exception.getStatus()
