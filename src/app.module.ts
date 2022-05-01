@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
 import { RoleModule } from './modules/role/role.module';
+import { AuthModule } from './common/auth/auth.module';
 
 import Configuration from './config';
 
@@ -33,6 +34,7 @@ import Configuration from './config';
       inject: [ConfigService],
     }),
     LoggerModule,
+    AuthModule,
     UserModule,
     RoleModule,
   ],
