@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DbLogger } from './common/log/logger.instance';
+import { OrmLogger } from './common/log/logger.instance';
 import { LoggerModule } from './common/log/logger.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -28,7 +28,7 @@ import Configuration from './config';
         logging: configService.get('database.logging'),
         timezone: configService.get('database.timezone'), // 时区
         // 自定义日志
-        logger: new DbLogger(),
+        logger: new OrmLogger(),
       }),
       inject: [ConfigService],
     }),

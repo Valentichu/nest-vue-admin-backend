@@ -155,7 +155,7 @@ export class Logger implements LoggerService {
 }
 
 // 自定义typeorm 日志器, 可参考 https://blog.csdn.net/huzzzz/article/details/103191803/
-export class DbLogger implements TypeOrmLogger {
+export class OrmLogger implements TypeOrmLogger {
   logQuery(query: string, parameters?: any[], queryRunner?: QueryRunner) {
     mysqlLogger.info(query);
   }
