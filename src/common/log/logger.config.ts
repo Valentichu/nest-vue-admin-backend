@@ -24,10 +24,6 @@ const log4jsConfig = {
             type: 'dateFile',
             filename: `${baseLogPath}/error/error.log`,
             alwaysIncludePattern: true,
-            layout: {
-                type: 'pattern',
-                pattern: "[%d{yyyy-MM-dd hh:mm:ss SSS}] [%p] -h: %h -pid: %z  msg: \'%m\' "
-            },
             pattern: 'yyyy-MM-dd',
             daysToKeep: 30,
             numBackups: 3,
