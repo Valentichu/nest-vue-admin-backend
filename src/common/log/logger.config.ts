@@ -38,7 +38,7 @@ const log4jsConfig = {
 
     categories: {
         default: { appenders: ['console', 'access', 'errors'], level: 'DEBUG' },
-        mysql: { appenders: ['access', 'errors'], level: 'INFO' },
+        mysql: { appenders: ['console', 'access', 'errors'], level: 'DEBUG' },
     },
 };
 
