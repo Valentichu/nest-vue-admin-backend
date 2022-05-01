@@ -5,4 +5,9 @@ import { defineConfig } from './defineConfig';
  */
 export default defineConfig({
     rootRoleId: 1,
+    swagger: {
+        title: 'Nest Vue Admin Backend',
+        desc: 'The Nest Vue Admin Backend API description',
+        version: '0.1'
+    }
 });
