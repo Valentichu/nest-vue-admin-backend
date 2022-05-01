@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
-import { TransformInterceptor } from './common/interceptors/transform.interceptor'
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { Logger } from './common/log/logger.instance';
 import { setupSwagger } from './common/doc/setup-swagger';
 

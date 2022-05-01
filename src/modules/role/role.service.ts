@@ -10,8 +10,8 @@ export class RoleService {
     private readonly logger: Logger,
 
     @InjectRepository(Role)
-    private RolesRepository: Repository<Role>
-  ) { }
+    private RolesRepository: Repository<Role>,
+  ) {}
 
   async create(entity: Role) {
     await this.RolesRepository.insert(entity);
@@ -22,7 +22,7 @@ export class RoleService {
   }
 
   findOne(id: number) {
-    return this.RolesRepository.findOneBy({id});
+    return this.RolesRepository.findOneBy({ id });
   }
 
   async update(id: number, entity: Role) {

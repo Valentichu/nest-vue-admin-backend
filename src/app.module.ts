@@ -16,9 +16,7 @@ import Configuration from './config';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (
-        configService: ConfigService,
-      ) => ({
+      useFactory: (configService: ConfigService) => ({
         autoLoadEntities: true,
         type: configService.get<any>('database.type'),
         host: configService.get<string>('database.host'),
@@ -39,4 +37,4 @@ import Configuration from './config';
     RoleModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

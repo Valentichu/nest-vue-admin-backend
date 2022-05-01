@@ -10,8 +10,8 @@ export class UserService {
     private readonly logger: Logger,
 
     @InjectRepository(User)
-    private usersRepository: Repository<User>
-  ) { }
+    private usersRepository: Repository<User>,
+  ) {}
 
   async create(entity: User) {
     await this.usersRepository.insert(entity);
@@ -22,7 +22,7 @@ export class UserService {
   }
 
   findOne(id: number) {
-    return this.usersRepository.findOneBy({id});
+    return this.usersRepository.findOneBy({ id });
   }
 
   async update(id: number, entity: User) {

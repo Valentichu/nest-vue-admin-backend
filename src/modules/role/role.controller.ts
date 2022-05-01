@@ -1,12 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { RoleService } from './role.service';
-import { Role } from './entities/role.entity'
+import { Role } from './entities/role.entity';
 
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('角色模块')
 @Controller('role')
 export class RoleController {
-  constructor(private readonly roleService: RoleService) { }
+  constructor(private readonly roleService: RoleService) {}
 
   @ApiOperation({ summary: '新增' })
   @Post()
