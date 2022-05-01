@@ -167,7 +167,7 @@ export class DbLogger implements TypeOrmLogger {
   logMigration(message: string, queryRunner?: QueryRunner) {
     mysqlLogger.info(message);
   }
-  
+
   log(level: 'log' | 'info' | 'warn', message: any, queryRunner?: QueryRunner) {
     switch (level) {
       case 'info': {
