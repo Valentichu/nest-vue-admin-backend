@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './modules/user/user.module';
 import { DbLogger } from './common/log/logger.instance';
 import { LoggerModule } from './common/log/logger.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './modules/user/user.module';
+import { RoleModule } from './modules/role/role.module';
 
 import Configuration from './config';
 
@@ -34,7 +35,8 @@ import Configuration from './config';
       inject: [ConfigService],
     }),
     LoggerModule,
-    UserModule
+    UserModule,
+    RoleModule,
   ],
 })
 export class AppModule { }
