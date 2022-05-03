@@ -30,7 +30,7 @@ import { OrmLoggerService } from './common/log/logger.instance';
         database: configService.get<string>('database.database'),
         synchronize: configService.get<boolean>('database.synchronize'),
         logging: configService.get('database.logging'),
-        timezone: configService.get('database.timezone'), // 时区
+        timezone: configService.get('database.timezone'),
         // 自定义日志
         logger: ormLoggerService,
       }),

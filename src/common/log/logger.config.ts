@@ -1,5 +1,3 @@
-// 项目根目录新建config文件用于保存配置文件, 新建log4jsConfig.ts配置文件
-
 import * as path from 'path';
 const baseLogPath = path.resolve(__dirname, '../../../logs');
 
