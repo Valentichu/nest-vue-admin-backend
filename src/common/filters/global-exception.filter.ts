@@ -9,7 +9,8 @@ import { ResultData } from '../data/result';
 
 @Catch(HttpException)
 export class GlobalExceptionFilter<T extends HttpException>
-  implements ExceptionFilter {
+  implements ExceptionFilter
+{
   catch(exception: T, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();

@@ -26,4 +26,9 @@ export class AuthService {
     }
     return null;
   }
+
+  async getUserInfo(id: number): Promise<any> {
+    const user = await this.userService.findOne(id);
+    return user;
+  }
 }

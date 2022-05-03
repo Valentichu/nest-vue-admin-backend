@@ -3,7 +3,7 @@ export default {
   // jwt sign secret
   jwt: {
     secret: '314159',
-    expiresIn: '60s',
+    expiresIn: '1d',
   },
   // typeorm config
   database: {

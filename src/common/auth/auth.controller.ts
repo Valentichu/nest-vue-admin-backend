@@ -1,7 +1,8 @@
-import { Controller, Request, Post, UseGuards } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Public } from './public.decorator'
+import { Public } from './public.decorator';
+import { LoginDto } from './dto/login.dto';
 
 @ApiTags('认证模块')
 @Controller('auth')
@@ -10,7 +11,7 @@ export class AuthController {
   @Post('login')
   @Public()
   @UseGuards(LocalAuthGuard)
-  async login(@Request() req) {
+  async login(@Body() loginDto: LoginDto, @Request() req) {
     return req.user;
   }
 }
