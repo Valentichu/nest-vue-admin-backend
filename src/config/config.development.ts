@@ -4,6 +4,7 @@ export default {
   jwt: {
     secret: '314159',
     expiresIn: '1d',
+    autoRefresh: true,
   },
   // typeorm config
   database: {
