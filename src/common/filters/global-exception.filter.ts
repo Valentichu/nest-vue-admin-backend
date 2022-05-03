@@ -5,7 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { ResultData } from '../data/result.data';
+import { ResultData } from '../data/result';
 
 @Catch(HttpException)
 export class GlobalExceptionFilter<T extends HttpException>

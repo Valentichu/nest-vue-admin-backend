@@ -10,10 +10,10 @@ import { GlobalExceptionFilter } from '../filters/global-exception.filter';
   imports: [LoggerModule],
   exports: [LoggerModule],
   providers: [
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: JwtGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,

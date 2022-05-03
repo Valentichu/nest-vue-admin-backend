@@ -18,7 +18,6 @@ export class UserService {
     await this.usersRepository.insert(entity);
   }
 
-  @Public()
   findAll() {
     return this.usersRepository.find();
   }
