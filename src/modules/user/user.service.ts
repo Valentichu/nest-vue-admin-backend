@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Logger } from 'src/common/log/logger.instance';
+import { CommonLoggerService } from 'src/common/log/logger.instance';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Public } from '../../common/auth/public.decorator';
 
 @Injectable()
 export class UserService {
   constructor(
-    private readonly logger: Logger,
+    private readonly commonLoggerService: CommonLoggerService,
 
     @InjectRepository(User)
     private usersRepository: Repository<User>,
@@ -17,6 +18,7 @@ export class UserService {
     await this.usersRepository.insert(entity);
   }
 
+  @Public()
   findAll() {
     return this.usersRepository.find();
   }

@@ -19,10 +19,10 @@ import { JwtStrategy } from './jwt.strategy';
         secret: configService.get<string>('jwt.secret'),
         signOptions: { expiresIn: configService.get<string>('jwt.expiresIn') },
       }),
-      inject: [ConfigService]
-    })
+      inject: [ConfigService],
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
 })
-export class AuthModule { }
+export class AuthModule {}

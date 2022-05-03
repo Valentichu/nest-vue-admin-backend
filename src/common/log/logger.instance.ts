@@ -6,7 +6,7 @@ import * as Moment from 'dayjs'; // 处理时间的工具
 import * as StackTrace from 'stacktrace-js';
 import Chalk from 'chalk';
 import log4jsConfig from './logger.config';
-import { LoggerService } from '@nestjs/common';
+import { Injectable, LoggerService } from '@nestjs/common';
 import { Logger as TypeOrmLogger } from 'typeorm';
 import { QueryRunner } from 'typeorm';
 
@@ -36,8 +36,8 @@ export class ContextTrace {
 // 添加用户自定义的格式化布局函数。 可参考: https://log4js-node.github.io/log4js-node/layouts.html
 Log4js.addLayout('json', (logConfig: any) => {
   return (logEvent: Log4js.LoggingEvent): string => {
-    let moduleName: string = '';
-    let position: string = '';
+    let moduleName = '';
+    let position = '';
 
     // 日志组装
     const messageList: string[] = [];
@@ -61,16 +61,14 @@ Log4js.addLayout('json', (logConfig: any) => {
     // 日志组成部分
     const messageOutput: string = messageList.join(' ');
     const positionOutput: string = position ? ` [${position}]` : '';
-    const typeOutput: string = `[${
-      logConfig.type
-    }] ${logEvent.pid.toString()}   - `;
-    const dateOutput: string = `${Moment(logEvent.startTime).format(
+    const typeOutput = `[${logConfig.type}] ${logEvent.pid.toString()}   - `;
+    const dateOutput = `${Moment(logEvent.startTime).format(
       'YYYY-MM-DD HH:mm:ss',
     )}`;
     const moduleOutput: string = moduleName
       ? `[${moduleName}] `
       : '[LoggerService] ';
-    let levelOutput: string = `[${logEvent.level}] ${messageOutput}`;
+    let levelOutput = `[${logEvent.level}] ${messageOutput}`;
 
     // 根据日志级别，用不同颜色区分
     switch (logEvent.level.toString()) {
@@ -105,45 +103,45 @@ Log4js.configure(log4jsConfig);
 
 // 实例化
 const logger = Log4js.getLogger('default');
-const mysqlLogger = Log4js.getLogger('mysql'); // 添加了typeorm 日志实例
 
-export class Logger implements LoggerService {
+@Injectable()
+export class CommonLoggerService implements LoggerService {
   /**
    * Write a 'log' level log.
    */
   log(message: any, ...optionalParams: any[]) {
-    logger.info(Logger.getStackTrace(), message);
+    logger.info(CommonLoggerService.getStackTrace(), message);
   }
 
   /**
    * Write an 'error' level log.
    */
   error(message: any, ...optionalParams: any[]) {
-    logger.error(Logger.getStackTrace(), message);
+    logger.error(CommonLoggerService.getStackTrace(), message);
   }
 
   /**
    * Write a 'warn' level log.
    */
   warn(message: any, ...optionalParams: any[]) {
-    logger.warn(Logger.getStackTrace(), message);
+    logger.warn(CommonLoggerService.getStackTrace(), message);
   }
 
   /**
    * Write a 'debug' level log.
    */
   debug?(message: any, ...optionalParams: any[]) {
-    logger.debug(Logger.getStackTrace(), message);
+    logger.debug(CommonLoggerService.getStackTrace(), message);
   }
 
   /**
    * Write a 'verbose' level log.
    */
   verbose?(message: any, ...optionalParams: any[]) {
-    logger.info(Logger.getStackTrace(), message);
+    logger.info(CommonLoggerService.getStackTrace(), message);
   }
 
-  static getStackTrace(deep: number = 2): string {
+  static getStackTrace(deep = 2): string {
     const stackList: StackTrace.StackFrame[] = StackTrace.getSync();
     const stackInfo: StackTrace.StackFrame = stackList[deep];
     const lineNumber: number = stackInfo.lineNumber;
@@ -154,8 +152,11 @@ export class Logger implements LoggerService {
   }
 }
 
+const mysqlLogger = Log4js.getLogger('mysql'); // 添加了typeorm 日志实例
+
 // 自定义typeorm 日志器, 可参考 https://blog.csdn.net/huzzzz/article/details/103191803/
-export class OrmLogger implements TypeOrmLogger {
+@Injectable()
+export class OrmLoggerService implements TypeOrmLogger {
   logQuery(query: string, parameters?: any[], queryRunner?: QueryRunner) {
     mysqlLogger.info(query);
   }

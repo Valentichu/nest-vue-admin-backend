@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { OrmLogger } from './common/log/logger.instance';
 import { LoggerModule } from './common/log/logger.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,6 +7,8 @@ import { RoleModule } from './modules/role/role.module';
 import { AuthModule } from './common/auth/auth.module';
 
 import Configuration from './config';
+import { CommonModule } from './common/module/common.module';
+import { OrmLoggerService } from './common/log/logger.instance';
 
 @Module({
   imports: [
@@ -16,8 +17,10 @@ import Configuration from './config';
       load: [Configuration],
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
+      useFactory: (
+        configService: ConfigService,
+        ormLoggerService: OrmLoggerService,
+      ) => ({
         autoLoadEntities: true,
         type: configService.get<any>('database.type'),
         host: configService.get<string>('database.host'),
@@ -29,10 +32,11 @@ import Configuration from './config';
         logging: configService.get('database.logging'),
         timezone: configService.get('database.timezone'), // 时区
         // 自定义日志
-        logger: new OrmLogger(),
+        logger: ormLoggerService,
       }),
-      inject: [ConfigService],
+      inject: [ConfigService, OrmLoggerService],
     }),
+    CommonModule,
     LoggerModule,
     AuthModule,
     UserModule,
