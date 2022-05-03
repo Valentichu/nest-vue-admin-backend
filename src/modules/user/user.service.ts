@@ -3,7 +3,7 @@ import { CommonLoggerService } from 'src/common/log/logger.instance';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { Public } from '../../common/auth/public.decorator';
+import { Public } from 'src/common/auth/public.decorator';
 
 @Injectable()
 export class UserService {

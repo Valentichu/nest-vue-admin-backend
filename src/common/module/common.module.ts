@@ -1,5 +1,5 @@
 import { Module, Global } from '@nestjs/common';
-import { LoggerModule } from '../../common/log/logger.module';
+import { LoggerModule } from 'src/common/log/logger.module';
 
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { JwtGuard } from '../auth/jwt.guard';
