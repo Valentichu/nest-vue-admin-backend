@@ -15,13 +15,14 @@ export class JwtGuard extends AuthGuard('jwt') {
     super();
   }
 
-  canActivate(context: ExecutionContext) {
+  async canActivate(context: ExecutionContext) {
     const isPublic =
       this.reflector.get(IS_PUBLIC_KEY, context.getHandler()) ?? false;
     if (isPublic) {
       return true;
     }
-    if (super.canActivate(context)) {
+    const canActivate = await super.canActivate(context)
+    if (canActivate) {
       // 自动续期
       if (this.configService.get<boolean>('jwt.autoRefresh')) {
         const req = context.switchToHttp().getRequest();
