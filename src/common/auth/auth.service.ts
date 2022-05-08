@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   async getUserInfo(id: number): Promise<any> {
-    const user = await this.userService.findOne(id);
+    const user = await this.userService.getInfo(id);
     return user;
   }
 }

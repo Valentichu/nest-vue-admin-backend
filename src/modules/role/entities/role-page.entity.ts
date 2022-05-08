@@ -3,11 +3,13 @@ import { BaseEntity } from 'src/common/entities/base.entity';
 
 @Entity()
 export class RolePage extends BaseEntity {
-  @Column()
-  role_id: number;
+  @Column({ name: 'role_id' })
+  roleId: number;
 
-  @Column()
-  page_id: number;
+  roleName: string;
+
+  @Column({ name: 'page_id' })
+  pageId: number;
 
   @Column()
   create: boolean;

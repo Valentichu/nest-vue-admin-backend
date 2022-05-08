@@ -1,6 +1,6 @@
-import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
+import { Controller, Request, Post, Get, UseGuards, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from './public.decorator';
 import { LoginDto } from './dto/login.dto';
 
@@ -12,6 +12,13 @@ export class AuthController {
   @Public()
   @UseGuards(LocalAuthGuard)
   async login(@Body() loginDto: LoginDto, @Request() req) {
+    return req.user;
+  }
+
+  @ApiOperation({ summary: '获取用户信息' })
+  @ApiBearerAuth()
+  @Get('info')
+  async getInfo(@Request() req) {
     return req.user;
   }
 }

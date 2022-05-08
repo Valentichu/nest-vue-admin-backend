@@ -3,9 +3,6 @@ import { BaseEntity } from 'src/common/entities/base.entity';
 
 @Entity()
 export class User extends BaseEntity {
-  @Column({ name: 'department_id', nullable: true })
-  departmentId: number;
-
   @Column()
   name: string;
 
@@ -26,4 +23,13 @@ export class User extends BaseEntity {
 
   @Column({ name: 'role_id', nullable: true })
   roleId: number;
+
+  roleName: string;
+
+  @Column({ name: 'department_id', nullable: true })
+  departmentId: number;
+
+  departmentName: string;
+
+  permissions: string[];
 }
