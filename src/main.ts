@@ -9,6 +9,7 @@ import { setupSwagger } from './common/doc/setup-swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
+    cors: true
   });
 
   app.useGlobalInterceptors(new TransformInterceptor());
