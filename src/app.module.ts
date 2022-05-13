@@ -1,14 +1,14 @@
-import { Module } from '@nestjs/common';
-import { LoggerModule } from './common/log/logger.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './modules/user/user.module';
-import { PageModule } from './modules/page/page.module';
-import { RoleModule } from './modules/role/role.module';
-import { AuthModule } from './common/auth/auth.module';
-import Configuration from './config';
-import { CommonModule } from './common/module/common.module';
-import { OrmLoggerService } from './common/log/logger.instance';
+import { Module } from '@nestjs/common'
+import { LoggerModule } from './common/log/logger.module'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { UserModule } from './modules/user/user.module'
+import { PageModule } from './modules/page/page.module'
+import { RoleModule } from './modules/role/role.module'
+import { AuthModule } from './common/auth/auth.module'
+import Configuration from './config'
+import { CommonModule } from './common/module/common.module'
+import { OrmLoggerService } from './common/log/logger.instance'
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { OrmLoggerService } from './common/log/logger.instance';
     TypeOrmModule.forRootAsync({
       useFactory: (
         configService: ConfigService,
-        ormLoggerService: OrmLoggerService,
+        ormLoggerService: OrmLoggerService
       ) => ({
         autoLoadEntities: true,
         type: configService.get<any>('database.type'),
@@ -41,7 +41,7 @@ import { OrmLoggerService } from './common/log/logger.instance';
     AuthModule,
     UserModule,
     RoleModule,
-    PageModule
+    PageModule,
   ],
 })
 export class AppModule {}

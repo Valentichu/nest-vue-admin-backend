@@ -18,4 +18,4 @@ export default {
     logging: false,
     timezone: '+08:00', // 东八区
   },
-};
+}

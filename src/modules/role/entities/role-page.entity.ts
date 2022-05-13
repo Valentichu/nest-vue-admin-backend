@@ -1,25 +1,25 @@
-import { Column, Entity } from 'typeorm';
-import { BaseEntity } from 'src/common/entities/base.entity';
+import { Column, Entity } from 'typeorm'
+import { BaseEntity } from 'src/common/entities/base.entity'
 
 @Entity()
 export class RolePage extends BaseEntity {
   @Column({ name: 'role_id' })
-  roleId: number;
+  roleId: number
 
-  roleName: string;
+  roleName: string
 
   @Column({ name: 'page_id' })
-  pageId: number;
+  pageId: number
 
   @Column()
-  create: boolean;
+  create: boolean
 
   @Column()
-  retrieve: boolean;
+  retrieve: boolean
 
   @Column()
-  update: boolean;
+  update: boolean
 
   @Column()
-  delete: boolean;
+  delete: boolean
 }

@@ -8,4 +8,4 @@ export default {
     desc: 'The Nest Vue Admin Backend API description',
     version: '0.1',
   },
-};
+}

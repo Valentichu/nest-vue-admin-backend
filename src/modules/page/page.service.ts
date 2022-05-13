@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { CommonLoggerService } from 'src/common/log/logger.instance';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Page } from './entities/page.entity';
+import { Injectable } from '@nestjs/common'
+import { CommonLoggerService } from 'src/common/log/logger.instance'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { Page } from './entities/page.entity'
 
 @Injectable()
 export class PageService {
@@ -10,26 +10,26 @@ export class PageService {
     private readonly commonLoggerService: CommonLoggerService,
 
     @InjectRepository(Page)
-    private repository: Repository<Page>,
+    private repository: Repository<Page>
   ) {}
 
   async create(entity: Page) {
-    await this.repository.insert(entity);
+    await this.repository.insert(entity)
   }
 
   findAll() {
-    return this.repository.find();
+    return this.repository.find()
   }
 
   findOne(id: number) {
-    return this.repository.findOneBy({ id });
+    return this.repository.findOneBy({ id })
   }
 
   async update(id: number, entity: Page) {
-    await this.repository.save(entity);
+    await this.repository.save(entity)
   }
 
   async remove(id: number) {
-    await this.repository.delete(id);
+    await this.repository.delete(id)
   }
 }

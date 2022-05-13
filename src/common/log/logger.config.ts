@@ -1,5 +1,5 @@
-import * as path from 'path';
-const baseLogPath = path.resolve(__dirname, '../../../logs');
+import * as path from 'path'
+const baseLogPath = path.resolve(__dirname, '../../../logs')
 
 const log4jsConfig = {
   appenders: {
@@ -37,6 +37,6 @@ const log4jsConfig = {
     default: { appenders: ['console', 'access', 'errors'], level: 'DEBUG' },
     mysql: { appenders: ['console', 'access', 'errors'], level: 'DEBUG' },
   },
-};
+}
 
-export default log4jsConfig;
+export default log4jsConfig

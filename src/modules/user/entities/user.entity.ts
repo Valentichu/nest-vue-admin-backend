@@ -1,35 +1,35 @@
-import { Column, Entity } from 'typeorm';
-import { BaseEntity } from 'src/common/entities/base.entity';
+import { Column, Entity } from 'typeorm'
+import { BaseEntity } from 'src/common/entities/base.entity'
 
 @Entity()
 export class User extends BaseEntity {
   @Column()
-  name: string;
+  name: string
 
   @Column({ unique: true })
-  username: string;
+  username: string
 
   @Column()
-  password: string;
+  password: string
 
   @Column({ nullable: true })
-  phone: string;
+  phone: string
 
   @Column({ nullable: true })
-  remark: string;
+  remark: string
 
   @Column({ type: 'tinyint', nullable: true, default: 1 })
-  status: number;
+  status: number
 
   @Column({ name: 'role_id', nullable: true })
-  roleId: number;
+  roleId: number
 
-  roleName: string;
+  roleName: string
 
   @Column({ name: 'department_id', nullable: true })
-  departmentId: number;
+  departmentId: number
 
-  departmentName: string;
+  departmentName: string
 
-  permissions: string[];
+  permissions: string[]
 }
