@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common'
 import { UserService } from './user.service'
 import { User } from './entities/user.entity'
@@ -15,6 +16,7 @@ import {
   CurrentDepartmentId,
   CurrentUserId,
 } from 'src/common/auth/current-user.decorator'
+import { QueryListDto } from './dto/query-list.dto'
 @ApiTags('用户模块')
 @Controller('user')
 export class UserController {
@@ -30,8 +32,8 @@ export class UserController {
   @ApiOperation({ summary: '查询列表' })
   @ApiBearerAuth()
   @Get()
-  findAll() {
-    return this.userService.findAll()
+  findAll(@Query() dto: QueryListDto) {
+    return this.userService.findAll(dto)
   }
 
   @ApiOperation({ summary: '查询详情' })

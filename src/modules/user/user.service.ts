@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { CommonLoggerService } from 'src/common/log/logger.instance'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Like, Repository } from 'typeorm'
 import { User } from './entities/user.entity'
 import { Role } from 'src/modules/role/entities/role.entity'
 import { Page } from 'src/modules/page/entities/page.entity'
 import { RolePage } from 'src/modules/role/entities/role-page.entity'
+import { QueryListDto } from './dto/query-list.dto'
+import { PageResultData } from 'src/common/data/result'
 
 @Injectable()
 export class UserService {
@@ -26,8 +28,19 @@ export class UserService {
     await this.userRepository.insert(entity)
   }
 
-  findAll() {
-    return this.userRepository.find()
+  async findAll(dto: QueryListDto) {
+    const { page, size, name, departmentId } = dto
+    const where = {
+      ...(departmentId ? { departmentId } : null),
+      ...(name ? { name: Like(`%${name}%`) } : null),
+    }
+    const [list, total] = await this.userRepository.findAndCount({
+      where,
+      order: { id: 'DESC' },
+      skip: size * (page - 1),
+      take: size,
+    })
+    return new PageResultData(list, total)
   }
 
   findOne(id: number) {

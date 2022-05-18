@@ -16,7 +16,7 @@ import {
   CurrentUserId,
 } from 'src/common/auth/current-user.decorator'
 @ApiTags('页面模块')
-@Controller('user')
+@Controller('page')
 export class PageController {
   constructor(private readonly pageService: PageService) {}
 

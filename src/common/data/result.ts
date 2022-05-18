@@ -9,3 +9,12 @@ export class ResultData {
     this.data = data || null
   }
 }
+
+export class PageResultData {
+  readonly list: any[]
+  readonly total: number
+  constructor(list?: any[], total?: number) {
+    this.total = total || 0
+    this.list = list || []
+  }
+}
