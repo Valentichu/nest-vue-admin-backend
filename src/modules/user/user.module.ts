@@ -9,7 +9,7 @@ import { RolePage } from '../role/entities/role-page.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Role, Page, RolePage])],
-  exports: [TypeOrmModule, UserService],
+  exports: [UserService],
   controllers: [UserController],
   providers: [UserService],
 })

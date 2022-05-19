@@ -9,6 +9,7 @@ import { AuthModule } from './common/auth/auth.module'
 import Configuration from './config'
 import { CommonModule } from './common/module/common.module'
 import { OrmLoggerService } from './common/log/logger.instance'
+import { DepartmentModule } from './modules/department/department.module'
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { OrmLoggerService } from './common/log/logger.instance'
     LoggerModule,
     AuthModule,
     UserModule,
+    DepartmentModule,
     RoleModule,
     PageModule,
   ],
