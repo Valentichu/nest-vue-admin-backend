@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { CommonLoggerService } from 'src/common/log/logger.instance'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Like, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { Department } from './entities/department.entity'
 import { ConfigService } from '@nestjs/config'
 import { User } from '../user/entities/user.entity'
@@ -30,11 +30,6 @@ export class DepartmentService {
       departmentMap[department.parentId].push(department)
     })
     let departmentTree
-    console.log(
-      '%c [ this.configService.get<number>("rootRoleId") ]-35',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      this.configService.get<number>('rootRoleId')
-    )
     if (currentUser.roleId === this.configService.get<number>('rootRoleId')) {
       departmentTree = departmentMap[0]
     } else {
