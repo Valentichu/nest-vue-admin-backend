@@ -46,6 +46,7 @@ export class UserService {
     //   .leftJoinAndSelect(Page, 'page', 'rolePage.page_id = page.id')
     //   .where('rolePage.role_id = :roleId', { roleId: role.id })
     //   .getRawMany()
+
     const { password, ...info } = user
     return info
   }

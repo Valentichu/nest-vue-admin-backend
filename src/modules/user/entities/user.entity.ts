@@ -1,7 +1,13 @@
 import { Column, Entity } from 'typeorm'
 import { BaseEntity } from 'src/common/entities/base.entity'
 
-export type roleType = '' | 'admin' | 'user'
+export type roleType = '' | 'admin' | 'user' | 'superAdmin'
+
+import {
+  dateTransformer,
+  monthTransformer,
+  yearTransformer,
+} from 'src/common/utils/date'
 
 @Entity()
 export class User extends BaseEntity {
@@ -17,11 +23,41 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   phone: string
 
-  @Column({ nullable: true })
-  remark: string
+  @Column()
+  level: string
 
-  @Column({ type: 'tinyint', nullable: true, default: 1 })
-  status: number
+  @Column()
+  age: number
+
+  @Column({
+    name: 'employment_date',
+    transformer: dateTransformer,
+    nullable: true,
+  })
+  employmentDate: Date
+
+  @Column({
+    name: 'appointment_date',
+    transformer: monthTransformer,
+    nullable: true,
+  })
+  AppointmentDate: Date
+
+  @Column({
+    name: 'promotion_date',
+    transformer: yearTransformer,
+    nullable: true,
+  })
+  promotionDate: Date
+
+  @Column()
+  education: string
+
+  @Column({ name: 'professional_title' })
+  professionalTitle: string
+
+  @Column()
+  kpi: boolean
 
   @Column({ name: 'role_name' })
   roleName: roleType
