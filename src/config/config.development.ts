@@ -1,5 +1,5 @@
 export default {
-  rootRoleId: 0,
+  rootRoleName: 'superAdmin',
   // jwt sign secret
   jwt: {
     secret: '314159',

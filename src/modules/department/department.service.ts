@@ -30,7 +30,9 @@ export class DepartmentService {
       departmentMap[department.parentId].push(department)
     })
     let departmentTree
-    if (currentUser.roleId === this.configService.get<number>('rootRoleId')) {
+    if (
+      currentUser.roleName === this.configService.get<string>('rootRoleName')
+    ) {
       departmentTree = departmentMap[0]
     } else {
       departmentTree = [currentDepartment]

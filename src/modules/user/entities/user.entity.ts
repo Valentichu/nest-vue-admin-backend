@@ -1,6 +1,8 @@
 import { Column, Entity } from 'typeorm'
 import { BaseEntity } from 'src/common/entities/base.entity'
 
+export type roleType = '' | 'admin' | 'user'
+
 @Entity()
 export class User extends BaseEntity {
   @Column()
@@ -21,15 +23,11 @@ export class User extends BaseEntity {
   @Column({ type: 'tinyint', nullable: true, default: 1 })
   status: number
 
-  @Column({ name: 'role_id', nullable: true })
-  roleId: number
-
-  roleName: string
+  @Column({ name: 'role_name' })
+  roleName: roleType
 
   @Column({ name: 'department_id', nullable: true })
   departmentId: number
 
   departmentName: string
-
-  permissions: string[]
 }

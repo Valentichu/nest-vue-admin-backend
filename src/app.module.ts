@@ -3,8 +3,6 @@ import { LoggerModule } from './common/log/logger.module'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UserModule } from './modules/user/user.module'
-import { PageModule } from './modules/page/page.module'
-import { RoleModule } from './modules/role/role.module'
 import { AuthModule } from './common/auth/auth.module'
 import Configuration from './config'
 import { CommonModule } from './common/module/common.module'
@@ -42,8 +40,6 @@ import { DepartmentModule } from './modules/department/department.module'
     AuthModule,
     UserModule,
     DepartmentModule,
-    RoleModule,
-    PageModule,
   ],
 })
 export class AppModule {}

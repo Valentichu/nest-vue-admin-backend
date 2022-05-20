@@ -12,11 +12,6 @@ import { DepartmentService } from './department.service'
 import { Department } from './entities/department.entity'
 
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
-import {
-  CurrentDepartmentId,
-  CurrentUserId,
-} from 'src/common/auth/current-user.decorator'
-import { QueryListDto } from './dto/query-list.dto'
 @ApiTags('部门模块')
 @Controller('department')
 export class DepartmentController {
