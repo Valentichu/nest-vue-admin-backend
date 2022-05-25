@@ -16,6 +16,6 @@ export default {
     database: 'nest-vue-admin',
     synchronize: true,
     logging: false,
-    timezone: 'CST',
+    timezone: '+08:00',
   },
 }

@@ -3,11 +3,7 @@ import { BaseEntity } from 'src/common/entities/base.entity'
 
 export type roleType = '' | 'admin' | 'user' | 'superAdmin'
 
-import {
-  dateTransformer,
-  monthTransformer,
-  yearTransformer,
-} from 'src/common/utils/date'
+import { dateTransformer, yearTransformer } from 'src/common/utils/date'
 
 @Entity()
 export class User extends BaseEntity {
@@ -26,7 +22,9 @@ export class User extends BaseEntity {
   @Column()
   level: string
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   age: number
 
   @Column({
@@ -38,10 +36,10 @@ export class User extends BaseEntity {
 
   @Column({
     name: 'appointment_date',
-    transformer: monthTransformer,
+    transformer: dateTransformer,
     nullable: true,
   })
-  AppointmentDate: Date
+  appointmentDate: Date
 
   @Column({
     name: 'promotion_date',

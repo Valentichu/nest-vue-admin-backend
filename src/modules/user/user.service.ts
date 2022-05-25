@@ -6,6 +6,8 @@ import { User } from './entities/user.entity'
 import { QueryListDto } from './dto/query-list.dto'
 import { PageResultData } from 'src/common/data/result'
 
+const PASSWORD = '123456'
+
 @Injectable()
 export class UserService {
   constructor(
@@ -16,7 +18,10 @@ export class UserService {
   ) {}
 
   async create(entity: User) {
-    await this.userRepository.insert(entity)
+    await this.userRepository.insert({
+      ...entity,
+      password: PASSWORD,
+    })
   }
 
   async findAll(dto: QueryListDto) {

@@ -1,13 +1,11 @@
 import * as dayjs from 'dayjs'
-import * as utc from 'dayjs/plugin/utc'
-dayjs.extend(utc)
 
 export const timeTransformer = {
   to(value) {
     return value
   },
   from(value) {
-    return dayjs.utc(value).format('YYYY-MM-DD HH:mm:ss')
+    return value ? dayjs(value).format('YYYY-MM-DD HH:mm:ss') : null
   },
 }
 
@@ -16,24 +14,24 @@ export const dateTransformer = {
     return value
   },
   from(value) {
-    return dayjs.utc(value).format('YYYY-MM-DD')
+    return value ? dayjs(value).format('YYYY-MM-DD') : null
   },
 }
 
 export const monthTransformer = {
   to(value) {
-    return value
+    return value ? `${value}-01` : null
   },
   from(value) {
-    return dayjs.utc(value).format('YYYY-MM')
+    return value ? dayjs(value).format('YYYY-MM') : null
   },
 }
 
 export const yearTransformer = {
   to(value) {
-    return value
+    return value ? `${value}-01-01` : null
   },
   from(value) {
-    return dayjs.utc(value).format('YYYY')
+    return value ? dayjs(value).format('YYYY') : null
   },
 }
