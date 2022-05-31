@@ -1,4 +1,4 @@
-import { Column, Entity } from 'typeorm'
+import { Column, Entity, Unique } from 'typeorm'
 import { BaseEntity } from 'src/common/entities/base.entity'
 
 export type roleType = '' | 'admin' | 'user' | 'superAdmin'
@@ -6,6 +6,7 @@ export type roleType = '' | 'admin' | 'user' | 'superAdmin'
 import { dateTransformer, yearTransformer } from 'src/common/utils/date'
 
 @Entity()
+@Unique(['username'])
 export class User extends BaseEntity {
   @Column()
   name: string

@@ -8,6 +8,7 @@ import Configuration from './config'
 import { CommonModule } from './common/module/common.module'
 import { OrmLoggerService } from './common/log/logger.instance'
 import { DepartmentModule } from './modules/department/department.module'
+import { ProjectModule } from './modules/project/project.module'
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { DepartmentModule } from './modules/department/department.module'
     AuthModule,
     UserModule,
     DepartmentModule,
+    ProjectModule,
   ],
 })
 export class AppModule {}
